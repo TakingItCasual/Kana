@@ -48,38 +48,7 @@
                 android:id="@+id/imageButton"
                 android:tint="@color/colorBlack"
                 android:scaleType='fitXY' />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/a03044"
-                android:id="@+id/imageButton"
-                android:tint="@color/colorBlack"
-                android:scaleType='fitXY' />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/a03046"
-                android:id="@+id/imageButton"
-                android:tint="@color/colorBlack"
-                android:scaleType='fitXY' />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/a03048"
-                android:id="@+id/imageButton"
-                android:tint="@color/colorBlack"
-                android:scaleType='fitXY' />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/a0304a"
-                android:id="@+id/imageButton"
-                android:tint="@color/colorBlack"
-                android:scaleType='fitXY' />
+            ...
 
         </TableRow>-->
 
