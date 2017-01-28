@@ -41,7 +41,7 @@ public class KanaEdit extends AppCompatActivity {
                 button.setImageResource(id);
                 button.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                 button.setColorFilter(ContextCompat.getColor(context,R.color.colorBlack));
-                button.setScaleType(AppCompatImageButton.ScaleType.FIT_XY);
+                button.setScaleType(AppCompatImageButton.ScaleType.CENTER_INSIDE);
 /*                button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
