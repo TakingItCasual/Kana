@@ -1,0 +1,7 @@
+<resources>
+    <string name="trans_duration">250</string>
+
+    <string name="app_name">Kana</string>
+    <string name="TopMenu">Edit Kana</string>
+    <string name="KanaEdit">Back to main menu</string>
+</resources>
