@@ -36,8 +36,8 @@
                 android:text="@string/KanaEdit"
                 android:onClick="switchTopMenu" />
         </TableRow>
-
-<!--        <TableRow
+<!--
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -46,8 +46,8 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/a03042"
                 android:id="@+id/imageButton"
-                android:tint="@color/colorBlack"
-                android:scaleType='fitXY' />
+                android:tint="@color/black"
+                android:scaleType='centerInside' />
             ...
 
         </TableRow>-->

@@ -13,8 +13,6 @@ import android.widget.TableLayout.LayoutParams;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import static android.R.attr.button;
-
 public class KanaEdit extends AppCompatActivity {
 
     @Override
@@ -42,7 +40,7 @@ public class KanaEdit extends AppCompatActivity {
 
                     button.setImageResource(id);
                     button.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-                    button.setColorFilter(ContextCompat.getColor(context, R.color.colorBlack));
+                    button.setColorFilter(ContextCompat.getColor(context, R.color.black));
                     button.setScaleType(AppCompatImageButton.ScaleType.CENTER_INSIDE);
                     button.setAdjustViewBounds(true);
     /*                button.setOnClickListener(new View.OnClickListener() {
