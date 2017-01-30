@@ -7,8 +7,8 @@ public class GlobalSingleton {
     /** A private Constructor prevents any other class from instantiating. */
     private GlobalSingleton() {
         kanaMode = MODE_KATAKANA;
-        hideObsolete = true;
-        hideDiacritics = false;
+        showObsolete = false;
+        showDiacritics = true;
     }
     public static synchronized GlobalSingleton getSingletonObject() {
         if (singletonObject == null) {
@@ -25,8 +25,8 @@ public class GlobalSingleton {
 
     private String testvar;
     private int kanaMode;
-    private boolean hideObsolete;
-    private boolean hideDiacritics;
+    private boolean showObsolete;
+    private boolean showDiacritics;
 
     public void set_testvar(String s){
         testvar = s;
@@ -40,17 +40,17 @@ public class GlobalSingleton {
     public int get_kanaMode(){
         return kanaMode;
     }
-    public void set_hideObsolete(boolean b){
-        hideObsolete = b;
+    public void set_showObsolete(boolean b){
+        showObsolete = b;
     }
-    public boolean get_hideObsolete(){
-        return hideObsolete;
+    public boolean get_showObsoletee(){
+        return showObsolete;
     }
-    public void set_hideDiacritics(boolean b){
-        hideDiacritics = b;
+    public void set_showDiacritics(boolean b){
+        showDiacritics = b;
     }
-    public boolean get_hideDiacritics(){
-        return hideDiacritics;
+    public boolean get_showDiacritics(){
+        return showDiacritics;
     }
 
     public String IndexToSound(int index){

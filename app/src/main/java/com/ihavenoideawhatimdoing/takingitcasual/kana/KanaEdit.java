@@ -1,7 +1,5 @@
 package com.ihavenoideawhatimdoing.takingitcasual.kana;
 
-import com.ihavenoideawhatimdoing.takingitcasual.kana.singleton.GlobalSingleton;
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
@@ -14,6 +12,8 @@ import android.widget.TableLayout;
 import android.widget.TableLayout.LayoutParams;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.ihavenoideawhatimdoing.takingitcasual.kana.singleton.GlobalSingleton;
 
 public class KanaEdit extends AppCompatActivity {
 
