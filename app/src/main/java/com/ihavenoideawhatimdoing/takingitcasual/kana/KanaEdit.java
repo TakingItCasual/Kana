@@ -1,5 +1,7 @@
 package com.ihavenoideawhatimdoing.takingitcasual.kana;
 
+import com.ihavenoideawhatimdoing.takingitcasual.kana.singleton.GlobalSingleton;
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
@@ -32,11 +34,11 @@ public class KanaEdit extends AppCompatActivity {
             tableRow.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
             for (int i2 = 0; i2 < 5; i2++) {
-                if (!Hiragana.IndexToSound(5 * i + i2).isEmpty()){
+                if (!g.IndexToSound(5 * i + i2).isEmpty()){
                     final AppCompatImageButton button = new AppCompatImageButton(this);
 
                     Context context = button.getContext();
-                    int id = context.getResources().getIdentifier("a0" + Hiragana.IndexToHex(5 * i + i2), "drawable", context.getPackageName());
+                    int id = context.getResources().getIdentifier("a0" + g.IndexToHex(5 * i + i2), "drawable", context.getPackageName());
 
                     button.setImageResource(id);
                     button.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));

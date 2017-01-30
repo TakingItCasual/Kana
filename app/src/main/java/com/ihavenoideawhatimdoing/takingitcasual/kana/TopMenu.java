@@ -1,5 +1,7 @@
 package com.ihavenoideawhatimdoing.takingitcasual.kana;
 
+import com.ihavenoideawhatimdoing.takingitcasual.kana.singleton.GlobalSingleton;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +15,7 @@ public class TopMenu extends AppCompatActivity {
         setContentView(R.layout.activity_top_menu);
 
         GlobalSingleton g = GlobalSingleton.getSingletonObject();
-        g.set_testvar(Hiragana.SoundToHex("ko"));
+        g.set_testvar(g.SoundToHex("ko"));
     }
 
     public void switchKanaEdit(View view) {
