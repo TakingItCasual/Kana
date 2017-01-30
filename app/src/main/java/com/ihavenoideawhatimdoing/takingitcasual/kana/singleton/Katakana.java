@@ -1,8 +1,8 @@
 package com.ihavenoideawhatimdoing.takingitcasual.kana.singleton;
 
-class Hiragana {
-
-    private static final String[][] hiraMain = {
+class Katakana {
+    
+    private static final String[][] kataMain = {
             {"a", "3042"},
             {"i", "3044"},
             {"u", "3046"},
@@ -100,7 +100,7 @@ class Hiragana {
             {"", "0000"},
     };
 
-    static final String[][] hiraMini = {
+    static final String[][] kataMini = {
             {"a", "3041"},
             {"i", "3043"},
             {"u", "3045"},
@@ -121,18 +121,17 @@ class Hiragana {
     };
 
     static String IndexToSound(int index){
-        return hiraMain[index][0];
+        return kataMain[index][0];
     }
     static String IndexToHex(int index){
-        return hiraMain[index][1];
+        return kataMain[index][1];
     }
     static String SoundToHex(String sound){
-        for(String[] kana : hiraMain){
+        for(String[] kana : kataMain){
             if(sound.equals(kana[0])){
                 return kana[1];
             }
         }
         return "0000";
     }
-
 }
