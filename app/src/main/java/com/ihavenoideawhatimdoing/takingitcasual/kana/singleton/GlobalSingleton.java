@@ -6,7 +6,7 @@ public class GlobalSingleton {
     private static GlobalSingleton singletonObject;
     /** A private Constructor prevents any other class from instantiating. */
     private GlobalSingleton() {
-        kanaMode = MODE_HIRAGANA;
+        kanaMode = MODE_KATAKANA;
         hideObsolete = true;
         hideDiacritics = false;
     }
@@ -54,12 +54,27 @@ public class GlobalSingleton {
     }
 
     public String IndexToSound(int index){
-        return Hiragana.IndexToSound(index);
+        if(kanaMode == MODE_HIRAGANA) {
+            return Hiragana.IndexToSound(index);
+        }else if(kanaMode == MODE_KATAKANA){
+            return Katakana.IndexToSound(index);
+        }
+        return "Invalid kanaMode";
     }
     public String IndexToHex(int index){
-        return Hiragana.IndexToHex(index);
+        if(kanaMode == MODE_HIRAGANA) {
+            return Hiragana.IndexToHex(index);
+        }else if(kanaMode == MODE_KATAKANA){
+            return Katakana.IndexToHex(index);
+        }
+        return "Invalid kanaMode";
     }
     public String SoundToHex(String sound){
-        return Hiragana.SoundToHex(sound);
+        if(kanaMode == MODE_HIRAGANA) {
+            return Hiragana.SoundToHex(sound);
+        }else if(kanaMode == MODE_KATAKANA){
+            return Katakana.SoundToHex(sound);
+        }
+        return "Invalid kanaMode";
     }
 }
