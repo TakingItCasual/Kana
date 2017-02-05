@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="hiraMode" type="id"/>
+    <item name="kataMode" type="id"/>
+
+</resources>

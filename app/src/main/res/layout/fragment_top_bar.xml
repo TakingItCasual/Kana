@@ -1,23 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TopBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context="com.ihavenoideawhatimdoing.takingitcasual.kana.menus.TopBar">
 
-    <Button
-        android:id="@+id/hira"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="HIRAGANA"
-        android:layout_weight="1"
-        android:onClick="switchKanaEdit" />
-
-    <Button
-        android:id="@+id/kata"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="KATAKANA"
-        android:layout_weight="1"
-        android:onClick="switchKanaEdit" />
-
-</LinearLayout>
+</fragment>

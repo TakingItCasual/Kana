@@ -100,4 +100,5 @@ public class KanaEdit extends AppCompatActivity {
         startActivity(new Intent(KanaEdit.this, TopMenu.class));
         overridePendingTransition(R.anim.enter_left, R.anim.exit_right);
     }
+
 }

@@ -20,8 +20,13 @@ public class GlobalSingleton {
         throw new CloneNotSupportedException();
     }
 
+
     public final int MODE_HIRAGANA = 0;
     public final int MODE_KATAKANA = 1;
+
+    public final int TOPBAR_BASIC = 0;
+    public final int TOPBAR_KANA = 1;
+    public final int TOPBAR_KANAEDIT = 2;
 
     private String testvar;
     private int kanaMode;

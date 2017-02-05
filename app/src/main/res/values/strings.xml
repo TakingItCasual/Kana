@@ -4,4 +4,7 @@
     <string name="app_name">Kana</string>
     <string name="TopMenu">Edit Kana</string>
     <string name="KanaEdit">Back to main menu</string>
+
+    <string name="HiraganaButton">HIRAGANA</string>
+    <string name="KatakanaButton">KATAKANA</string>
 </resources>
