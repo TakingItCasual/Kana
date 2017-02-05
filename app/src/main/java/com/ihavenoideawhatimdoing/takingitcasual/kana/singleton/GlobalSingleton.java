@@ -20,7 +20,6 @@ public class GlobalSingleton {
         throw new CloneNotSupportedException();
     }
 
-
     public final int MODE_HIRAGANA = 0;
     public final int MODE_KATAKANA = 1;
 

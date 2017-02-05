@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <item name="backButton" type="id"/>
+    <item name="settingsButton" type="id"/>
     <item name="hiraMode" type="id"/>
     <item name="kataMode" type="id"/>
+
+    <item name="emptySpace" type="id" />
 
 </resources>

@@ -1,8 +1,12 @@
 package com.ihavenoideawhatimdoing.takingitcasual.kana.menus;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.Space;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +19,12 @@ import com.ihavenoideawhatimdoing.takingitcasual.kana.singleton.GlobalSingleton;
 
 public class TopBar extends Fragment {
 
-    private int Mode;
+    private int TopBarMode;
     GlobalSingleton g;
 
     public TopBar() {
         g = GlobalSingleton.getSingletonObject();
+        TopBarMode = g.TOPBAR_BASIC;
     }
 
 
@@ -27,7 +32,10 @@ public class TopBar extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Mode = this.getArguments().getInt("Mode");
+        TopBarMode = this.getArguments().getInt("Mode");
+
+        Context context = this.getContext();
+        int buttonBarHeight = context.getResources().getDimensionPixelSize(R.dimen.TopBarHeight);
 
         final LinearLayout parentLL = new LinearLayout(getActivity());
         parentLL.setLayoutParams(new LinearLayout.LayoutParams(
@@ -36,14 +44,77 @@ public class TopBar extends Fragment {
         ));
         parentLL.setOrientation(LinearLayout.VERTICAL);
 
-        if(Mode >= g.TOPBAR_BASIC){
-
-        }
-        if(Mode >= g.TOPBAR_KANA){
+        if(TopBarMode >= g.TOPBAR_BASIC){
             final LinearLayout buttonBar = new LinearLayout(getActivity());
             buttonBar.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
+                    buttonBarHeight
+            ));
+            buttonBar.setOrientation(LinearLayout.HORIZONTAL);
+
+            final AppCompatImageView backButton = new AppCompatImageView(getActivity());
+            LinearLayout.LayoutParams button1_params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+            );
+            backButton.setLayoutParams(button1_params);
+
+            int back_xml = context.getResources().getIdentifier("back_arrow", "drawable", context.getPackageName());
+
+            backButton.setImageResource(back_xml);
+            backButton.setColorFilter(ContextCompat.getColor(context, R.color.black));
+            backButton.setScaleType(AppCompatImageView.ScaleType.CENTER_INSIDE);
+            backButton.setAdjustViewBounds(true);
+
+            backButton.setId(R.id.backButton);
+            backButton.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO: make back button do something
+                }
+            });
+
+            final Space emptySpace = new Space(getActivity());
+            LinearLayout.LayoutParams space_params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    1.0f // layout_weight
+            );
+            emptySpace.setLayoutParams(space_params);
+            emptySpace.setId(R.id.emptySpace);
+
+            final AppCompatImageView settingsButton = new AppCompatImageView(getActivity());
+            LinearLayout.LayoutParams button2_params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            settingsButton.setLayoutParams(button2_params);
+
+            int settings_xml = context.getResources().getIdentifier("settings_gear", "drawable", context.getPackageName());
+
+            settingsButton.setImageResource(settings_xml);
+            settingsButton.setColorFilter(ContextCompat.getColor(context, R.color.black));
+            settingsButton.setScaleType(AppCompatImageView.ScaleType.CENTER_INSIDE);
+            settingsButton.setAdjustViewBounds(true);
+
+            settingsButton.setId(R.id.settingsButton);
+            settingsButton.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO: make settings button do something
+                }
+            });
+
+            buttonBar.addView(backButton);
+            buttonBar.addView(emptySpace);
+            buttonBar.addView(settingsButton);
+            parentLL.addView(buttonBar);
+        }
+        if(TopBarMode >= g.TOPBAR_KANA){
+            final LinearLayout buttonBar = new LinearLayout(getActivity());
+            buttonBar.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    buttonBarHeight
             ));
             buttonBar.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -83,7 +154,7 @@ public class TopBar extends Fragment {
             buttonBar.addView(button2);
             parentLL.addView(buttonBar);
         }
-        if(Mode >= g.TOPBAR_KANAEDIT){
+        if(TopBarMode >= g.TOPBAR_KANAEDIT){
 
         }
 
