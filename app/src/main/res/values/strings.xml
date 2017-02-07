@@ -7,4 +7,9 @@
 
     <string name="HiraganaButton">HIRAGANA</string>
     <string name="KatakanaButton">KATAKANA</string>
+
+    <string name="MenuButton_KanaEdit">Edit Kana</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

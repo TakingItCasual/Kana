@@ -17,16 +17,32 @@ import com.ihavenoideawhatimdoing.takingitcasual.kana.KanaEdit;
 import com.ihavenoideawhatimdoing.takingitcasual.kana.R;
 import com.ihavenoideawhatimdoing.takingitcasual.kana.singleton.GlobalSingleton;
 
+
 public class TopBar extends Fragment {
 
-    private int TopBarMode;
+    private static int TopBarMode;
+
     GlobalSingleton g;
 
     public TopBar() {
+
+    }
+
+    public static TopBar newInstance(int setTopBarMode) {
+        TopBar fragment = new TopBar();
+        Bundle args = new Bundle();
+        args.putInt("Mode", setTopBarMode);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         g = GlobalSingleton.getSingletonObject();
         TopBarMode = g.TOPBAR_BASIC;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
