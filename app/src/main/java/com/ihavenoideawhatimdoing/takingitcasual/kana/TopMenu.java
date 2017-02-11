@@ -26,7 +26,7 @@ public class TopMenu extends AppCompatActivity {
         TopBar tb = TopBar.newInstance(g.TOPBAR_KANA);
         transaction.replace(R.id.topBar, tb);
         FirstScreen fs = FirstScreen.newInstance();
-        transaction.replace(R.id.firstScreen, fs);
+        transaction.replace(R.id.mainScreen, fs);
         transaction.commit();
     }
 

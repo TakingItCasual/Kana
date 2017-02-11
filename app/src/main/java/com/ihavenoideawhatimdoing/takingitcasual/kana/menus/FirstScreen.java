@@ -56,13 +56,17 @@ public class FirstScreen extends Fragment {
         editKanaButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // switchKanaEdit(v);
+                switchKanaEdit(v);
             }
         });
 
         parentLL.addView(editKanaButton);
 
         return parentLL;
+    }
+
+    private void switchKanaEdit(View view){
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainScreen, KanaEdit.newInstance()).commit();
     }
 
 }
