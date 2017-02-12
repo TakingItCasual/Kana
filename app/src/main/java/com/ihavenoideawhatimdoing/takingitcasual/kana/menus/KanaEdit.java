@@ -60,6 +60,8 @@ public class KanaEdit extends Fragment {
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT
         ));
+        tableLayout.setStretchAllColumns(true);
+        tableLayout.setShrinkAllColumns(true);
 
         for (int i = 0; i < 16; i++) {
             final TableRow tableRow = new TableRow(getActivity());
