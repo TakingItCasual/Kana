@@ -133,6 +133,7 @@ public class TopBar extends Fragment {
                     buttonBarHeight
             ));
             buttonBar.setOrientation(LinearLayout.HORIZONTAL);
+            buttonBar.setBackgroundResource(R.drawable.linearlayout_shadow);
 
             final Button button1 = new Button(getActivity());
             LinearLayout.LayoutParams button1_params = new LinearLayout.LayoutParams(
@@ -141,6 +142,7 @@ public class TopBar extends Fragment {
                     1.0f // layout_weight
             );
             button1.setLayoutParams(button1_params);
+            button1.setBackgroundResource(R.drawable.btn_grey_rect);
             button1.setId(R.id.hiraMode);
             button1.setText(R.string.HiraganaButton);
             button1.setOnClickListener(new Button.OnClickListener() {
@@ -157,6 +159,7 @@ public class TopBar extends Fragment {
                     1.0f // layout_weight
             );
             button2.setLayoutParams(button2_params);
+            button2.setBackgroundResource(R.drawable.btn_grey_rect);
             button2.setId(R.id.kataMode);
             button2.setText(R.string.KatakanaButton);
             button2.setOnClickListener(new Button.OnClickListener() {
