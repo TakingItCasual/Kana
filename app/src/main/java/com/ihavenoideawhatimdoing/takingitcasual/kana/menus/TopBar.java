@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.Space;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,6 +128,17 @@ public class TopBar extends Fragment {
             parentLL.addView(buttonBar);
         }
         if(TopBarMode >= g.TOPBAR_KANA){
+            final CardView buttonBarWrapper = new CardView(getActivity());
+            buttonBarWrapper.setLayoutParams(new CardView.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            ));
+            buttonBarWrapper.setUseCompatPadding(true);
+            buttonBarWrapper.setPreventCornerOverlap(false);
+            buttonBarWrapper.setRadius(0);
+            buttonBarWrapper.setPadding(0, 0, 0, 0);
+            buttonBarWrapper.setCardElevation(context.getResources().getDimensionPixelSize(R.dimen.spacing_tiny));
+
             final LinearLayout buttonBar = new LinearLayout(getActivity());
             buttonBar.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
@@ -171,7 +183,8 @@ public class TopBar extends Fragment {
 
             buttonBar.addView(button1);
             buttonBar.addView(button2);
-            parentLL.addView(buttonBar);
+            buttonBarWrapper.addView(buttonBar);
+            parentLL.addView(buttonBarWrapper);
         }
         if(TopBarMode >= g.TOPBAR_KANAEDIT){
 
