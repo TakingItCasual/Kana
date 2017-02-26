@@ -2,6 +2,8 @@ package com.ihavenoideawhatimdoing.takingitcasual.kana.menus;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,7 @@ import android.widget.LinearLayout;
 import com.ihavenoideawhatimdoing.takingitcasual.kana.R;
 import com.ihavenoideawhatimdoing.takingitcasual.kana.singleton.GlobalSingleton;
 
-public class FirstScreen extends Fragment {
+public class FirstScreen extends android.support.v4.app.Fragment {
 
     GlobalSingleton g;
 
@@ -66,7 +68,14 @@ public class FirstScreen extends Fragment {
     }
 
     private void switchKanaEdit(View view){
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainScreen, KanaEdit.newInstance()).commit();
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_right, R.anim.exit_left,
+                R.anim.enter_left, R.anim.exit_right);
+        KanaEdit ke = KanaEdit.newInstance();
+        transaction.replace(R.id.mainScreen, ke);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 }

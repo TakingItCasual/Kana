@@ -6,7 +6,7 @@ public class GlobalSingleton {
     private static GlobalSingleton singletonObject;
     /** A private Constructor prevents any other class from instantiating. */
     private GlobalSingleton() {
-        kanaMode = MODE_KATAKANA;
+        kanaMode = MODE_HIRAGANA;
         showObsolete = false;
         showDiacritics = true;
     }

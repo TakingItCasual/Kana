@@ -3,23 +3,22 @@ package com.ihavenoideawhatimdoing.takingitcasual.kana.menus;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.Space;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.CardView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.ihavenoideawhatimdoing.takingitcasual.kana.KanaEdit;
 import com.ihavenoideawhatimdoing.takingitcasual.kana.R;
 import com.ihavenoideawhatimdoing.takingitcasual.kana.singleton.GlobalSingleton;
 
 
-public class TopBar extends Fragment {
+public class TopBar extends android.support.v4.app.Fragment {
 
     private static int TopBarMode;
 
@@ -53,6 +52,7 @@ public class TopBar extends Fragment {
 
         Context context = this.getContext();
         int buttonBarHeight = context.getResources().getDimensionPixelSize(R.dimen.TopBarHeight);
+        float dpDensity = context.getResources().getDisplayMetrics().density;
 
         final LinearLayout parentLL = new LinearLayout(getActivity());
         parentLL.setLayoutParams(new LinearLayout.LayoutParams(
@@ -61,13 +61,25 @@ public class TopBar extends Fragment {
         ));
         parentLL.setOrientation(LinearLayout.VERTICAL);
 
-        if(TopBarMode >= g.TOPBAR_BASIC){
+        if(TopBarMode >= g.TOPBAR_BASIC){ // Back button, page description, options button
+            final CardView buttonBarCard = new CardView(getActivity());
+            buttonBarCard.setLayoutParams(new CardView.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            ));
+            buttonBarCard.setUseCompatPadding(true);
+            buttonBarCard.setPreventCornerOverlap(false);
+            buttonBarCard.setRadius(0);
+            buttonBarCard.setPadding(0, 0, 0, 0);
+            buttonBarCard.setCardElevation(3.0f / dpDensity);
+
             final LinearLayout buttonBar = new LinearLayout(getActivity());
             buttonBar.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     buttonBarHeight
             ));
             buttonBar.setOrientation(LinearLayout.HORIZONTAL);
+            buttonBar.setVerticalGravity(Gravity.CENTER);
 
             final AppCompatImageView backButton = new AppCompatImageView(getActivity());
             LinearLayout.LayoutParams button1_params = new LinearLayout.LayoutParams(
@@ -87,7 +99,7 @@ public class TopBar extends Fragment {
             backButton.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO: make back button do something
+                    getActivity().onBackPressed();
                 }
             });
 
@@ -125,19 +137,20 @@ public class TopBar extends Fragment {
             buttonBar.addView(backButton);
             buttonBar.addView(emptySpace);
             buttonBar.addView(settingsButton);
-            parentLL.addView(buttonBar);
+            buttonBarCard.addView(buttonBar);
+            parentLL.addView(buttonBarCard);
         }
-        if(TopBarMode >= g.TOPBAR_KANA){
-            final CardView buttonBarWrapper = new CardView(getActivity());
-            buttonBarWrapper.setLayoutParams(new CardView.LayoutParams(
+        if(TopBarMode >= g.TOPBAR_KANA){ // Hiragana and Katakana buttons
+            final CardView buttonBarCard = new CardView(getActivity());
+            buttonBarCard.setLayoutParams(new CardView.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             ));
-            buttonBarWrapper.setUseCompatPadding(true);
-            buttonBarWrapper.setPreventCornerOverlap(false);
-            buttonBarWrapper.setRadius(0);
-            buttonBarWrapper.setPadding(0, 0, 0, 0);
-            buttonBarWrapper.setCardElevation(context.getResources().getDimensionPixelSize(R.dimen.spacing_tiny));
+            buttonBarCard.setUseCompatPadding(true);
+            buttonBarCard.setPreventCornerOverlap(false);
+            buttonBarCard.setRadius(0);
+            buttonBarCard.setPadding(0, 0, 0, 0);
+            buttonBarCard.setCardElevation(2.0f / dpDensity);
 
             final LinearLayout buttonBar = new LinearLayout(getActivity());
             buttonBar.setLayoutParams(new LinearLayout.LayoutParams(
@@ -145,7 +158,6 @@ public class TopBar extends Fragment {
                     buttonBarHeight
             ));
             buttonBar.setOrientation(LinearLayout.HORIZONTAL);
-            buttonBar.setBackgroundResource(R.drawable.linearlayout_shadow);
 
             final Button button1 = new Button(getActivity());
             LinearLayout.LayoutParams button1_params = new LinearLayout.LayoutParams(
@@ -154,15 +166,20 @@ public class TopBar extends Fragment {
                     1.0f // layout_weight
             );
             button1.setLayoutParams(button1_params);
-            button1.setBackgroundResource(R.drawable.btn_grey_rect);
             button1.setId(R.id.hiraMode);
             button1.setText(R.string.HiraganaButton);
             button1.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    switchKanaEdit(v);
+                    setKanaMode(g.MODE_HIRAGANA);
+                    //switchKanaEdit(v);
                 }
             });
+            if(g.get_kanaMode() == g.MODE_HIRAGANA){
+                button1.setBackgroundResource(R.drawable.btn_grey_rect_focus);
+            }else{
+                button1.setBackgroundResource(R.drawable.btn_grey_rect);
+            }
 
             final Button button2 = new Button(getActivity());
             LinearLayout.LayoutParams button2_params = new LinearLayout.LayoutParams(
@@ -171,20 +188,25 @@ public class TopBar extends Fragment {
                     1.0f // layout_weight
             );
             button2.setLayoutParams(button2_params);
-            button2.setBackgroundResource(R.drawable.btn_grey_rect);
             button2.setId(R.id.kataMode);
             button2.setText(R.string.KatakanaButton);
             button2.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    switchKanaEdit(v);
+                    setKanaMode(g.MODE_KATAKANA);
+                    //switchKanaEdit(v);
                 }
             });
+            if(g.get_kanaMode() == g.MODE_KATAKANA){
+                button2.setBackgroundResource(R.drawable.btn_grey_rect_focus);
+            }else{
+                button2.setBackgroundResource(R.drawable.btn_grey_rect);
+            }
 
             buttonBar.addView(button1);
             buttonBar.addView(button2);
-            buttonBarWrapper.addView(buttonBar);
-            parentLL.addView(buttonBarWrapper);
+            buttonBarCard.addView(buttonBar);
+            parentLL.addView(buttonBarCard);
         }
         if(TopBarMode >= g.TOPBAR_KANAEDIT){
 
@@ -204,6 +226,22 @@ public class TopBar extends Fragment {
         }
         startActivity(new Intent(getActivity(), KanaEdit.class));
         getActivity().overridePendingTransition(R.anim.enter_right, R.anim.exit_left);
+    }
+
+    private void setKanaMode(int kanaMode){
+        //KanaEdit keObj = (KanaEdit)getActivity().getSupportFragmentManager().findFragmentById(R.id.KanaEdit);
+        //TODO: Get the KanaEdit fragment to update its kana when the kanaMode is switched
+        if(kanaMode == g.MODE_HIRAGANA){
+            g.set_kanaMode(g.MODE_HIRAGANA);
+            getView().findViewById(R.id.hiraMode).setBackgroundResource(R.drawable.btn_grey_rect_focus);
+            getView().findViewById(R.id.kataMode).setBackgroundResource(R.drawable.btn_grey_rect);
+            //keObj.reloadKana();
+        }else if(kanaMode == g.MODE_KATAKANA){
+            g.set_kanaMode(g.MODE_KATAKANA);
+            getView().findViewById(R.id.hiraMode).setBackgroundResource(R.drawable.btn_grey_rect);
+            getView().findViewById(R.id.kataMode).setBackgroundResource(R.drawable.btn_grey_rect_focus);
+            //keObj.reloadKana();
+        }
     }
 
 }

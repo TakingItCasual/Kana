@@ -19,10 +19,15 @@ import android.widget.TextView;
 
 import com.ihavenoideawhatimdoing.takingitcasual.kana.R;
 import com.ihavenoideawhatimdoing.takingitcasual.kana.singleton.GlobalSingleton;
+import com.ihavenoideawhatimdoing.takingitcasual.kana.singleton.KanaTag;
 
-public class KanaEdit extends Fragment {
+import java.util.ArrayList;
+
+public class KanaEdit extends android.support.v4.app.Fragment {
 
     GlobalSingleton g;
+
+    ArrayList<AppCompatImageView> kanaImgs = new ArrayList<>();
 
     public KanaEdit() {
         // Required empty public constructor
@@ -62,6 +67,7 @@ public class KanaEdit extends Fragment {
         ));
         tableLayout.setStretchAllColumns(true);
         tableLayout.setShrinkAllColumns(true);
+        tableLayout.setId(R.id.kanaTable);
 
         for (int i = 0; i < 16; i++) {
             final TableRow tableRow = new TableRow(getActivity());
@@ -87,27 +93,29 @@ public class KanaEdit extends Fragment {
                     button.setClickable(true);
                     button.setFocusable(true);
                     button.setPadding(margin, margin, margin, margin);
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //TODO: Connect kana buttons to data/descriptions
+                        }
+                    });
 
                     final AppCompatImageView buttonImage = new AppCompatImageView(getActivity());
                     buttonImage.setLayoutParams(new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
                     ));
+                    buttonImage.setTag(new KanaTag(g.IndexToSound(5 * i + i2)));
+                    kanaImgs.add(buttonImage);
 
                     context = buttonImage.getContext();
-                    int id = context.getResources().getIdentifier("a0" + g.IndexToHex(5 * i + i2), "drawable", context.getPackageName());
+                    int img = context.getResources().getIdentifier(
+                            "z0" + g.IndexToHex(5 * i + i2), "drawable", context.getPackageName());
 
-                    buttonImage.setImageResource(id);
+                    buttonImage.setImageResource(img);
                     buttonImage.setColorFilter(ContextCompat.getColor(context, R.color.black));
                     buttonImage.setScaleType(AppCompatImageView.ScaleType.CENTER_INSIDE);
                     buttonImage.setAdjustViewBounds(true);
-    /*                button.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            final TableRow parent = (TableRow) v.getParent();
-                            tableLayout.removeView(parent);
-                        }
-                    });*/
 
                     final TextView buttonText = new TextView(getActivity());
                     buttonText.setLayoutParams(new LinearLayout.LayoutParams(
@@ -131,6 +139,18 @@ public class KanaEdit extends Fragment {
         parentScroll.addView(tableLayout);
 
         return parentScroll;
+    }
+
+    public void reloadKana(){
+        TableLayout kanaTable = (TableLayout)getActivity().findViewById(R.id.kanaTable);
+        for(AppCompatImageView imageView: kanaImgs){
+            KanaTag kanaTag = (KanaTag)imageView.getTag();
+
+            Context context = imageView.getContext();
+            int img = context.getResources().getIdentifier(
+                    "z0" + g.SoundToHex(kanaTag.sound), "drawable", context.getPackageName());
+            imageView.setImageResource(img);
+        }
     }
 
 }
