@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="109dp"
+    android:height="109dp"
+    android:viewportWidth="109"
+    android:viewportHeight="109">
+
+    <path
+        android:name="kvg:030df-s1"
+        android:strokeColor="#000000"
+        android:strokeWidth="3"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round"
+        android:pathData="M41.87,20c10.4,2.57,20.5,6.3,25,10.38" />
+    <path
+        android:name="kvg:030df-s2"
+        android:strokeColor="#000000"
+        android:strokeWidth="3"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round"
+        android:pathData="M42,46.88c10.72,2.69,21.11,6.6,25.75,10.88" />
+    <path
+        android:name="kvg:030df-s3"
+        android:strokeColor="#000000"
+        android:strokeWidth="3"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round"
+        android:pathData="M36.5,75c15.71,4.49,30.95,11,37.75,18.12" />
+</vector>
