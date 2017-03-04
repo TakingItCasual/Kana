@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.Space;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.CardView;
 import android.view.Gravity;
@@ -16,7 +17,6 @@ import android.widget.LinearLayout;
 
 import com.ihavenoideawhatimdoing.takingitcasual.kana.R;
 import com.ihavenoideawhatimdoing.takingitcasual.kana.singleton.GlobalSingleton;
-
 
 public class TopBar extends android.support.v4.app.Fragment {
 
@@ -60,7 +60,7 @@ public class TopBar extends android.support.v4.app.Fragment {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         ));
         parentLL.setOrientation(LinearLayout.VERTICAL);
-
+        //TODO: Make back button and settings button square
         if(TopBarMode >= g.TOPBAR_BASIC){ // Back button, page description, options button
             final CardView buttonBarCard = new CardView(getActivity());
             buttonBarCard.setLayoutParams(new CardView.LayoutParams(
@@ -81,14 +81,15 @@ public class TopBar extends android.support.v4.app.Fragment {
             buttonBar.setOrientation(LinearLayout.HORIZONTAL);
             buttonBar.setVerticalGravity(Gravity.CENTER);
 
-            final AppCompatImageView backButton = new AppCompatImageView(getActivity());
+            final AppCompatImageButton backButton = new AppCompatImageButton(getActivity());
             LinearLayout.LayoutParams button1_params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.MATCH_PARENT
             );
             backButton.setLayoutParams(button1_params);
+            backButton.setBackgroundResource(R.drawable.btn_white);
 
-            int back_xml = context.getResources().getIdentifier("back_arrow", "drawable", context.getPackageName());
+            int back_xml = context.getResources().getIdentifier("ico_back_arrow", "drawable", context.getPackageName());
 
             backButton.setImageResource(back_xml);
             backButton.setColorFilter(ContextCompat.getColor(context, R.color.black));
@@ -112,14 +113,15 @@ public class TopBar extends android.support.v4.app.Fragment {
             emptySpace.setLayoutParams(space_params);
             emptySpace.setId(R.id.emptySpace);
 
-            final AppCompatImageView settingsButton = new AppCompatImageView(getActivity());
+            final AppCompatImageButton settingsButton = new AppCompatImageButton(getActivity());
             LinearLayout.LayoutParams button2_params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
+                    LinearLayout.LayoutParams.MATCH_PARENT
             );
             settingsButton.setLayoutParams(button2_params);
+            settingsButton.setBackgroundResource(R.drawable.btn_white);
 
-            int settings_xml = context.getResources().getIdentifier("settings_gear", "drawable", context.getPackageName());
+            int settings_xml = context.getResources().getIdentifier("ico_settings_gear", "drawable", context.getPackageName());
 
             settingsButton.setImageResource(settings_xml);
             settingsButton.setColorFilter(ContextCompat.getColor(context, R.color.black));
@@ -181,6 +183,15 @@ public class TopBar extends android.support.v4.app.Fragment {
                 button1.setBackgroundResource(R.drawable.btn_grey_rect);
             }
 
+            final View seperator = new View(getActivity());
+            LinearLayout.LayoutParams seperator_params = new LinearLayout.LayoutParams(
+                    2,
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    0.0f // layout_weight
+            );
+            seperator.setLayoutParams(seperator_params);
+            seperator.setBackgroundResource(R.drawable.horizontal_divider);
+
             final Button button2 = new Button(getActivity());
             LinearLayout.LayoutParams button2_params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
@@ -204,6 +215,7 @@ public class TopBar extends android.support.v4.app.Fragment {
             }
 
             buttonBar.addView(button1);
+            buttonBar.addView(seperator);
             buttonBar.addView(button2);
             buttonBarCard.addView(buttonBar);
             parentLL.addView(buttonBarCard);
