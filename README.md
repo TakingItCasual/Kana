@@ -1,4 +1,2 @@
 # Kana
-Japanese kana learning app for Android
-
-My first Android application (and also my first time programming in java).
+My getting familiar with Java and Android development (with Android Studio). Contains XML vectordrawables converted from SVG files.
